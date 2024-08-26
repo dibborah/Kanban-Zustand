@@ -1,8 +1,13 @@
 import './App.css';
+import Column from './components/Column';
 
 const App = () => {
   return (
-    <div className='App'>App</div>
+    <div className='App'>
+      <Column state='PLANNED' />
+      <Column state='ONGOING' />
+      <Column state='DONE' />
+    </div>
   )
 }
 
