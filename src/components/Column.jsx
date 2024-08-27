@@ -12,8 +12,20 @@ const Column = ({ state }) => {
         (store) => store.tasks.filter(task => task.state === state)
     );
     const addTasks = useStore((store) => store.addTasks);
+    const setDraggedTask = useStore((store) => store.setDraggedTask);
+    const draggedTask = useStore((store) => store.draggedTask);
+    const moveTask = useStore((store) => store.moveTask);
     return (
-        <div className="column">
+        <div
+            className="column"
+            onDragOver={e => {
+                e.preventDefault();
+            }}
+            onDrop={() => {
+                moveTask(draggedTask, state);
+                setDraggedTask(null)
+            }}
+        >
             <div className="titleWrapper">
                 <p>{state}</p>
                 <button onClick={() => {
